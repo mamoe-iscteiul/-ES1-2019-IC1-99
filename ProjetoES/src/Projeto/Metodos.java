@@ -8,6 +8,7 @@ public class Metodos {
 	public File openRead()throws IOException{
 		return null;//adicionei isto
 		//File f= 
+		//teste 123
 	}
 	public static void main(String[] args) {
 		
