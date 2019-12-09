@@ -19,7 +19,7 @@ public class GUI {
 	        fc.setInitialDirectory(new File("C:\\Users\\257ma\\Documents"));
 	        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("exceldoc" ,"*.xlsx");
 	        fc.getExtensionFilters().add(extensionFilter);
-	        File selectedFile = fc.showOpenDialog(importButton.getGraphic().getScene().getWindow());  //window dá null, arranjar maneira de usar a scene principal
+	        File selectedFile = fc.showOpenDialog(importButton.getGraphic().getScene().getWindow()); 
 	       
 		
 	}
