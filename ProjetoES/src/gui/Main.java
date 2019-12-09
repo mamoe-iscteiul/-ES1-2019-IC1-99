@@ -42,7 +42,7 @@ public class Main extends Application {
 	}
 	public void buttonImport() {
 	        FileChooser fc = new FileChooser();
-	        fc.setInitialDirectory(new File("Long-Method.xlsx"));
+	        fc.setInitialDirectory(new File(System.getProperty("user.dir"))));
 	        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("exceldoc" ,"*.xlsx");
 	        fc.getExtensionFilters().add(extensionFilter);
 	        File selectedFile = fc.showOpenDialog(stage);
