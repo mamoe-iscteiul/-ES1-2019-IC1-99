@@ -28,7 +28,7 @@ public class Main extends Application {
 			stage = primaryStage;
 			primaryStage.show();
 		} catch(Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 	}
 	
@@ -42,7 +42,7 @@ public class Main extends Application {
 	}
 	public void buttonImport() {
 	        FileChooser fc = new FileChooser();
-	        fc.setInitialDirectory(new File(System.getProperty("user.dir"))));
+	        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
 	        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("exceldoc" ,"*.xlsx");
 	        fc.getExtensionFilters().add(extensionFilter);
 	        File selectedFile = fc.showOpenDialog(stage);
