@@ -17,7 +17,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem fx:id="importButton" mnemonicParsing="false" onAction="#buttonImport" text="Import" />
+              <MenuItem fx:id="importButton" mnemonicParsing="false" onAction="#importButton" text="Import" />
                   <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
@@ -35,7 +35,7 @@
       </MenuBar>
    </top>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
@@ -45,7 +45,7 @@
    <right>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="26.0" layoutY="85.0" />
+            <TextField fx:id="thresholdTextField" layoutX="26.0" layoutY="85.0" />
             <Button layoutX="74.0" layoutY="125.0" mnemonicParsing="false" text="Enter" textAlignment="CENTER" />
             <Text layoutX="42.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the thresholds" />
          </children>
