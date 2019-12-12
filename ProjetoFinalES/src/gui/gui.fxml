@@ -50,6 +50,9 @@
             <TableColumn fx:id="pmd" prefWidth="75.0" text="PMD" />
             <TableColumn fx:id="is_feature_envy" prefWidth="75.0" text="is_feature_envy" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </center>
    <bottom>
