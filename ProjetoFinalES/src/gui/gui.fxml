@@ -19,20 +19,16 @@
    <top>
       <MenuBar prefWidth="800.0" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Ficheiro">
             <items>
               <MenuItem fx:id="importButton" mnemonicParsing="false" onAction="#buttonImport" text="Import" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Ferramentas">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="iPlasma" />
+                  <MenuItem mnemonicParsing="false" text="PMD" />
+                  <MenuItem mnemonicParsing="false" text="Comparar" />
             </items>
           </Menu>
         </menus>
@@ -103,7 +99,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="310.0" layoutY="71.0" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label text="LAA máx." />
+                  <Label text="LAA min." />
                   <TextField fx:id="laaTextField" alignment="CENTER" prefHeight="26.0" prefWidth="71.0" />
                </children>
                <GridPane.margin>

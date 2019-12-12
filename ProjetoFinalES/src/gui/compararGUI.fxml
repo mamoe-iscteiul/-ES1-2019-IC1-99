@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="646.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="188.19999389648433" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="271.8000091552734" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="266.8" minHeight="9.000016021728513" prefHeight="60.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="266.8" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="307.8000091552735" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label alignment="CENTER" text="PMD" GridPane.halignment="CENTER" />
+      <Label text="iPlasma" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <children>
+            <Label text="DCI">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </Label>
+            <TextField alignment="CENTER" />
+         </children>
+         <GridPane.margin>
+            <Insets right="30.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <children>
+            <Label text="DII">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </Label>
+            <TextField />
+         </children>
+         <GridPane.margin>
+            <Insets right="30.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+         <children>
+            <Label text="ADCI">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </Label>
+            <TextField />
+         </children>
+         <GridPane.margin>
+            <Insets right="30.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+         <children>
+            <Label text="ADII">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </Label>
+            <TextField />
+         </children>
+         <GridPane.margin>
+            <Insets right="30.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label text="DCI">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </Label>
+            <TextField alignment="CENTER" />
+         </children>
+         <GridPane.margin>
+            <Insets right="30.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <Label text="DII">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </Label>
+            <TextField />
+         </children>
+         <GridPane.margin>
+            <Insets right="30.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="152.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <Label text="ADCI">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </Label>
+            <TextField />
+         </children>
+         <GridPane.margin>
+            <Insets right="30.0" />
+         </GridPane.margin>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="200.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <Label text="ADII">
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </Label>
+            <TextField />
+         </children>
+         <GridPane.margin>
+            <Insets right="30.0" />
+         </GridPane.margin>
+      </HBox>
+   </children>
+</GridPane>
