@@ -58,6 +58,9 @@ public class GUI {
 	List<Metodo> metodos = new ArrayList<Metodo>();
 	DataFormatter df = new DataFormatter();
 	Resultado resultado;
+	GUI controller;
+
+	
 
 	@FXML
 	TableView<Metodo> table;
@@ -101,13 +104,19 @@ public class GUI {
 	private int cyclo_regra_atual;
 	private int atfd_regra_atual;
 	private double laa_regra_atual;
-	
-	private List<Metodo>isFeature= new ArrayList<Metodo>();
-	private List<Metodo>noFeature= new ArrayList<Metodo>();
+
+	private List<Metodo> isFeature = new ArrayList<Metodo>();
+	private List<Metodo> noFeature = new ArrayList<Metodo>();
+	private List<Metodo> metodos_long = new ArrayList<Metodo>();
+	private List<Metodo> metodos_non_long = new ArrayList<Metodo>();
+	private List<Metodo> metodos_DCI = new ArrayList<Metodo>();
+	private List<Metodo> metodos_DII = new ArrayList<Metodo>();
+	private List<Metodo> metodos_ADCI = new ArrayList<Metodo>();
+	private List<Metodo> metodos_ADII = new ArrayList<Metodo>();
 
 	public void initialize() {
 //		desativarTextFields();
-//		carregarRegrasDefault();
+		carregarRegrasDefault();
 //		gravarButton.setDisable(true);
 
 	}
@@ -186,10 +195,10 @@ public class GUI {
 	}
 
 	private void carregarRegrasDefault() {
-		locTextField.setText(String.valueOf(LOC_REGRA_DEFAULT));
-		cycloTextField.setText(String.valueOf(CYCLO_REGRA_DEFAULT));
-		atfdTextField.setText(String.valueOf(ATFD_REGRA_DEFAULT));
-		laaTextField.setText(String.valueOf(LAA_REGRA_DEFAULT));
+//		locTextField.setText(String.valueOf(LOC_REGRA_DEFAULT));
+//		cycloTextField.setText(String.valueOf(CYCLO_REGRA_DEFAULT));
+//		atfdTextField.setText(String.valueOf(ATFD_REGRA_DEFAULT));
+//		laaTextField.setText(String.valueOf(LAA_REGRA_DEFAULT));
 		setLoc_regra_atual(LOC_REGRA_DEFAULT);
 		setCyclo_regra_atual(CYCLO_REGRA_DEFAULT);
 		setAtfd_regra_atual(ATFD_REGRA_DEFAULT);
@@ -240,25 +249,63 @@ public class GUI {
 	public List<Metodo> getMetodos() {
 		return metodos;
 	}
-
+	public void setController(GUI controller) {
+		this.controller = controller;
+	}
 	public void detetarErros() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("detecaoErrosGUI.fxml"));
 		root = fxmlLoader.load();
+		DetecaoErroController controller = (DetecaoErroController)fxmlLoader.getController();// obtens o controller DetecaoErroController para poderes chamar metodos dele
+		controller.guardarListasDeMetodos(getMetodos_long());										// este controller é o que vai abrir. assim que fazes fxmlLoader.load estás a criar a instância
+		controller.setLoc_regra_atual(123);																			// e consegues obter o controller que está a ser criado
+		controller.setLaa_regra_atual(laa_regra_atual);// aqui tento dar set das regras no controller mas elas aparecem a 0. a lista dos metodos não aparece sequer porque não passa
 		stage = new Stage();
 		stage.setScene(new Scene(root, 600, 400));
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
 	}
-	
-	public void is_feature_envy(){
-		for(int i=0;i<metodos.size();i++){
-			if(metodos.get(i).getAtfd()>atfd_regra_atual && metodos.get(i).getLaa()<laa_regra_atual){
+
+	public void is_feature_envy() {
+		for (int i = 0; i < metodos.size(); i++) {
+			if (metodos.get(i).getAtfd() > atfd_regra_atual && metodos.get(i).getLaa() < laa_regra_atual) {
 				isFeature.add(metodos.get(i));
 			}
 			noFeature.add(metodos.get(i));
 		}
 	}
-	
+
+	public void isLongMethod(int LOC, int CYCLO) {
+		for (int i = 0; i < getMetodos().size(); i++) {
+			if (getMetodos().get(i).getLoc() > LOC && getMetodos().get(i).getCyclo() > CYCLO) {
+				metodos_long.add(getMetodos().get(i));
+			}else {
+				metodos_non_long.add(getMetodos().get(i));
+			}
+		}
+	}
+
+	public void compararIplasma() {
+		for (int i = 0; i < metodos_long.size(); i++) {
+			if (metodos_long.get(i).isPlasma() == true) {
+				metodos_DCI.add(metodos_long.get(i));
+			} else
+				metodos_ADII.add(metodos_long.get(i));
+		}
+		for (int i = 0; i < metodos_non_long.size(); i++) {
+			if (metodos_non_long.get(i).isPlasma() == true) {
+				metodos_DII.add(metodos_non_long.get(i));
+			} else
+				metodos_ADCI.add(metodos_non_long.get(i));
+		}
+	}
+
+	public List<Metodo> getMetodos_long() {
+		return metodos_long;
+	}
+
+	public void setMetodos_long(List<Metodo> metodos_long) {
+		this.metodos_long = metodos_long;
+	}
 	
 
 }
