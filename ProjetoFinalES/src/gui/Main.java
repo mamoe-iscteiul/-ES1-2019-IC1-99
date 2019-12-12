@@ -34,7 +34,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
+	GUI controller;
 	
+	
+
 	Stage stage;
 	
 	
@@ -74,7 +77,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("gui.fxml"));
+			Parent root = loader.load();
+			controller = loader.getController();
+			controller.setController(controller);
 			Scene scene = new Scene(root, 1200, 500);
 			primaryStage.setScene(scene);
 			stage = primaryStage;
@@ -88,6 +94,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	
 
 }

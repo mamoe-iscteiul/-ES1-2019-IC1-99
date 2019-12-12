@@ -86,7 +86,7 @@ public class Metodo {
 	public void setLaa(double laa) {
 		this.laa = laa;
 	}
-	public boolean is_long_method() {
+	public boolean isIs_long_method() {
 		return is_long_method;
 	}
 	public void setIs_long_method(boolean is_long_method) {
