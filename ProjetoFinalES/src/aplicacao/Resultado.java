@@ -10,14 +10,13 @@ public class Resultado {
 	private int method_id;
 	private String ferramenta_utilizada;
 	private boolean defeitos_detetados;
-	
+
 	private List<Metodo>TrueLongMethod= new ArrayList<Metodo>();
 	private List<Metodo>FalseLongMethod= new ArrayList<Metodo>();
 	private List<Metodo>DCI= new ArrayList<Metodo>();
 	private List<Metodo>DII= new ArrayList<Metodo>();
 	private List<Metodo>ADCI= new ArrayList<Metodo>();
 	private List<Metodo>ADII= new ArrayList<Metodo>();
-
 
 
 	public int getMethod_id() {
@@ -38,17 +37,16 @@ public class Resultado {
 	public void setDefeitos_detetados(boolean defeitos_detetados) {
 		this.defeitos_detetados = defeitos_detetados;
 	}
-	
-	public void isLongMethod(GUI g,int LOC,int CYCLO){
+
+	public void isLongMethod(GUI g,int LOC, int CYCLO){
 		for(int i=0;i<g.getMetodos().size();i++){
-			if(g.getMetodos().get(i).getLoc()>LOC || g.getMetodos().get(i).getCyclo()>CYCLO){
+			if(g.getMetodos().get(i).getLoc()>LOC && g.getMetodos().get(i).getCyclo()>CYCLO){
 				TrueLongMethod.add(g.getMetodos().get(i));
-			}else if(g.getMetodos().get(i).getLoc()<LOC || g.getMetodos().get(i).getCyclo()<CYCLO){
-				FalseLongMethod.add(g.getMetodos().get(i));
 			}
+			FalseLongMethod.add(g.getMetodos().get(i));
 		}
 	}
-	
+
 	public void compararIplasma(){
 		for(int i=0;i<TrueLongMethod.size();i++){
 			if(TrueLongMethod.get(i).isPlasma()==true){
