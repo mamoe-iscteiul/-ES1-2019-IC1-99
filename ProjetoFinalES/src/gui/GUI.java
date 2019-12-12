@@ -14,6 +14,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import aplicacao.Metodo;
+import aplicacao.Resultado;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,13 +23,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class GUI {
 
@@ -53,6 +57,7 @@ public class GUI {
 	Stage stage;
 	List<Metodo> metodos = new ArrayList<Metodo>();
 	DataFormatter df = new DataFormatter();
+	Resultado resultado;
 
 	@FXML
 	TableView<Metodo> table;
@@ -85,6 +90,8 @@ public class GUI {
 
 	@FXML
 	MenuItem compararButton;
+	@FXML
+	Button detetarErrosButton;
 
 	private static int LOC_REGRA_DEFAULT = 80;
 	private static int CYCLO_REGRA_DEFAULT = 10;
@@ -94,15 +101,18 @@ public class GUI {
 	private int cyclo_regra_atual;
 	private int atfd_regra_atual;
 	private double laa_regra_atual;
+	
+	private List<Metodo>isFeature= new ArrayList<Metodo>();
+	private List<Metodo>noFeature= new ArrayList<Metodo>();
 
 	private List<Metodo>isFeature= new ArrayList<Metodo>();
 	private List<Metodo>noFeature= new ArrayList<Metodo>();
 
 	
 	public void initialize() {
-		desativarTextFields();
-		carregarRegrasDefault();
-		gravarButton.setDisable(true);
+//		desativarTextFields();
+//		carregarRegrasDefault();
+//		gravarButton.setDisable(true);
 
 	}
 
@@ -230,15 +240,30 @@ public class GUI {
 	public void setLaa_regra_atual(double laa_regra_atual) {
 		this.laa_regra_atual = laa_regra_atual;
 	}
-	
-	public List<Metodo> getMetodos(){
+
+	public List<Metodo> getMetodos() {
 		return metodos;
 	}
-	
 
-	public void guardarStage(Stage stage) {
-		this.stage = stage;
+	public void detetarErros() throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("detecaoErrosGUI.fxml"));
+		root = fxmlLoader.load();
+		stage = new Stage();
+		stage.setScene(new Scene(root, 600, 400));
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.show();
 	}
+	
+	public void is_feature_envy(){
+		for(int i=0;i<metodos.size();i++){
+			if(metodos.get(i).getAtfd()>atfd_regra_atual && metodos.get(i).getLaa()<laa_regra_atual){
+				isFeature.add(metodos.get(i));
+			}
+			noFeature.add(metodos.get(i));
+		}
+	}
+	
+	
 
 	public void is_feature_envy(){
 		for(int i=0;i<metodos.size();i++){
