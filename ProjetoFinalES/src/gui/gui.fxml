@@ -28,7 +28,7 @@
             <items>
               <MenuItem mnemonicParsing="false" text="iPlasma" />
                   <MenuItem mnemonicParsing="false" text="PMD" />
-                  <MenuItem mnemonicParsing="false" text="Comparar" />
+                  <MenuItem fx:id="compararButton" onAction="#abrirJanelaComparacao" mnemonicParsing="false" text="Comparar" />
             </items>
           </Menu>
         </menus>
