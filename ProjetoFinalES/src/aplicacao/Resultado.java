@@ -11,12 +11,12 @@ public class Resultado {
 	private String ferramenta_utilizada;
 	private boolean defeitos_detetados;
 	
-	private List<Metodo>TrueLongMethod= new ArrayList<Metodo>();
-	private List<Metodo>FalseLongMethod= new ArrayList<Metodo>();
-	private List<Metodo>DCI= new ArrayList<Metodo>();
-	private List<Metodo>DII= new ArrayList<Metodo>();
-	private List<Metodo>ADCI= new ArrayList<Metodo>();
-	private List<Metodo>ADII= new ArrayList<Metodo>();
+	private List<Metodo>metodos_long= new ArrayList<Metodo>();
+	private List<Metodo>metodos_non_long= new ArrayList<Metodo>();
+	private List<Metodo>metodos_DCI= new ArrayList<Metodo>();
+	private List<Metodo>metodos_DII= new ArrayList<Metodo>();
+	private List<Metodo>metodos_ADCI= new ArrayList<Metodo>();
+	private List<Metodo>metodos_ADII= new ArrayList<Metodo>();
 
 
 
@@ -42,44 +42,44 @@ public class Resultado {
 	public void isLongMethod(GUI g,int LOC,int CYCLO){
 		for(int i=0;i<g.getMetodos().size();i++){
 			if(g.getMetodos().get(i).getLoc()>LOC || g.getMetodos().get(i).getCyclo()>CYCLO){
-				TrueLongMethod.add(g.getMetodos().get(i));
+				metodos_long.add(g.getMetodos().get(i));
 			}else if(g.getMetodos().get(i).getLoc()<LOC || g.getMetodos().get(i).getCyclo()<CYCLO){
-				FalseLongMethod.add(g.getMetodos().get(i));
+				metodos_non_long.add(g.getMetodos().get(i));
 			}
 		}
 	}
 	
 	public void compararIplasma(){
-		for(int i=0;i<TrueLongMethod.size();i++){
-			if(TrueLongMethod.get(i).isPlasma()==true){
-				DCI.add(TrueLongMethod.get(i));
-			}
-			ADII.add(TrueLongMethod.get(i));
+		for(int i=0;i<metodos_long.size();i++){
+			if(metodos_long.get(i).isPlasma()==true){
+				metodos_DCI.add(metodos_long.get(i));
+			}else
+			metodos_ADII.add(metodos_long.get(i));
 		}
-		for(int i=0;i<FalseLongMethod.size();i++){
-			if(FalseLongMethod.get(i).isPlasma()==true){
-				DII.add(FalseLongMethod.get(i));
-			}
-			ADCI.add(FalseLongMethod.get(i));
+		for(int i=0;i<metodos_non_long.size();i++){
+			if(metodos_non_long.get(i).isPlasma()==true){
+				metodos_DII.add(metodos_non_long.get(i));
+			}else
+			metodos_ADCI.add(metodos_non_long.get(i));
 		}
 	}
 	public List<Metodo> getTrueLongMethod() {
-		return TrueLongMethod;
+		return metodos_long;
 	}
 	public List<Metodo> getFalseLongMethod() {
-		return FalseLongMethod;
+		return metodos_non_long;
 	}
 	public List<Metodo> getDCI() {
-		return DCI;
+		return metodos_DCI;
 	}
 	public List<Metodo> getDII() {
-		return DII;
+		return metodos_DII;
 	}
 	public List<Metodo> getADCI() {
-		return ADCI;
+		return metodos_ADCI;
 	}
 	public List<Metodo> getADII() {
-		return ADII;
+		return metodos_ADII;
 	}
 
 }
