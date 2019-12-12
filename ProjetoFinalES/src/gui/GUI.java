@@ -269,14 +269,7 @@ public class GUI {
 		stage.show();
 	}
 
-	public void is_feature_envy() {
-		for (int i = 0; i < metodos.size(); i++) {
-			if (metodos.get(i).getAtfd() > atfd_regra_atual && metodos.get(i).getLaa() < laa_regra_atual) {
-				isFeature.add(metodos.get(i));
-			}
-			noFeature.add(metodos.get(i));
-		}
-	}
+	
 
 	public void isLongMethod(int LOC, int CYCLO) {
 		for (int i = 0; i < getMetodos().size(); i++) {
