@@ -206,4 +206,9 @@ public class GUI {
 	public void setLaa_regra_atual(double laa_regra_atual) {
 		this.laa_regra_atual = laa_regra_atual;
 	}
+	
+	public List<Metodo> getMetodos(){
+		return metodos;
+	}
+	
 }
