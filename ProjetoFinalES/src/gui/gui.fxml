@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -8,10 +10,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Main">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUI">
    <top>
       <MenuBar prefWidth="800.0" BorderPane.alignment="CENTER">
         <menus>
@@ -53,12 +57,62 @@
       </TableView>
    </center>
    <bottom>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <TextField layoutX="26.0" layoutY="85.0" />
-            <Button layoutX="74.0" layoutY="125.0" mnemonicParsing="false" text="Enter" textAlignment="CENTER" />
-            <Text layoutX="42.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the thresholds" />
+            <Label alignment="CENTER" text="Thresholds definidos:" GridPane.halignment="CENTER" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnIndex="1">
+               <children>
+                  <Label alignment="CENTER" text="LOC máx." />
+                  <TextField fx:id="locTextField" alignment="CENTER" prefHeight="26.0" prefWidth="71.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets right="90.0" />
+               </GridPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label text="CYCLO máx." />
+                  <TextField fx:id="cycloTextField" alignment="CENTER" prefHeight="26.0" prefWidth="71.0">
+                     <HBox.margin>
+                        <Insets right="90.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label text="ATFD máx." />
+                  <TextField fx:id="atfdTextField" alignment="CENTER" prefHeight="26.0" prefWidth="71.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets right="90.0" />
+               </GridPane.margin>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="310.0" layoutY="71.0" prefHeight="100.0" prefWidth="200.0" spacing="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label text="LAA máx." />
+                  <TextField fx:id="laaTextField" alignment="CENTER" prefHeight="26.0" prefWidth="71.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets right="90.0" />
+               </GridPane.margin>
+            </HBox>
+            <Button fx:id="editButton" alignment="CENTER" mnemonicParsing="false" onAction="#editarRegras" text="Edit" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="gravarButton" alignment="CENTER" mnemonicParsing="false" onAction="#gravarRegras" text="Gravar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          </children>
-      </Pane>
+      </GridPane>
    </bottom>
 </BorderPane>

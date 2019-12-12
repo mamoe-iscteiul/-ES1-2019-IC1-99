@@ -13,6 +13,6 @@ module projetoFinalES {
 	requires javafx.base;
 	exports gui;
 	opens gui;
-	exports metodo;
-	opens metodo;
+	exports aplicacao;
+	opens aplicacao;
 }
