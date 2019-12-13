@@ -67,6 +67,7 @@ public class GUIControllerResultados {
 	public void initialize(List<Metodo> lista) {
 
 		analisarMetodos(lista);
+		setupTabelas();
 		pmd_dci_tf.setText(String.valueOf((pmd_dci)));
 		pmd_dii_tf.setText(String.valueOf((pmd_dii)));
 		pmd_adci_tf.setText(String.valueOf((pmd_adci)));
