@@ -39,10 +39,6 @@ public class GUI {
 	@FXML
 	MenuItem importButton;
 
-	@FXML
-	Button editButton;
-	@FXML
-	Button gravarButton;
 
 	@FXML
 	TextField locTextField;
@@ -124,20 +120,7 @@ public class GUI {
 
 	}
 
-	public void editarRegras() {
-		ativarTextFields();
-		gravarButton.setDisable(false);
-	}
-
-	public void gravarRegras() {
-		setLoc_regra_atual(Integer.parseInt(locTextField.getText()));
-		setCyclo_regra_atual(Integer.parseInt(cycloTextField.getText()));
-		setAtfd_regra_atual(Integer.parseInt(atfdTextField.getText()));
-		setLaa_regra_atual(Double.parseDouble(laaTextField.getText()));
-		desativarTextFields();
-		gravarButton.setDisable(true);
-
-	}
+	
 
 	public void ativarTextFields() {
 		locTextField.setDisable(false);
@@ -266,33 +249,36 @@ public class GUI {
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
 	}
+	
+	public void abrirRegras() throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("regrasGUI.fxml"));
+		root = fxmlLoader.load();
+		RegrasGUIController controller = (RegrasGUIController)fxmlLoader.getController();
+		controller.initialize(loc_regra_atual, cyclo_regra_atual, atfd_regra_atual, laa_regra_atual, this);
+		stage = new Stage();
+		stage.setScene(new Scene(root, 700,400));
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.show();
+	}
 
 	
 
-	public void isLongMethod(int LOC, int CYCLO) {
-		for (int i = 0; i < getMetodos().size(); i++) {
-			if (getMetodos().get(i).getLoc() > LOC && getMetodos().get(i).getCyclo() > CYCLO) {
-				metodos_long.add(getMetodos().get(i));
-			}else {
-				metodos_non_long.add(getMetodos().get(i));
-			}
-		}
-	}
+	
 
-	public void compararIplasma() {
-		for (int i = 0; i < metodos_long.size(); i++) {
-			if (metodos_long.get(i).isPlasma() == true) {
-				metodos_DCI.add(metodos_long.get(i));
-			} else
-				metodos_ADII.add(metodos_long.get(i));
-		}
-		for (int i = 0; i < metodos_non_long.size(); i++) {
-			if (metodos_non_long.get(i).isPlasma() == true) {
-				metodos_DII.add(metodos_non_long.get(i));
-			} else
-				metodos_ADCI.add(metodos_non_long.get(i));
-		}
-	}
+//	public void compararIplasma() {
+//		for (int i = 0; i < metodos_long.size(); i++) {
+//			if (metodos_long.get(i).isPlasma() == true) {
+//				metodos_DCI.add(metodos_long.get(i));
+//			} else
+//				metodos_ADII.add(metodos_long.get(i));
+//		}
+//		for (int i = 0; i < metodos_non_long.size(); i++) {
+//			if (metodos_non_long.get(i).isPlasma() == true) {
+//				metodos_DII.add(metodos_non_long.get(i));
+//			} else
+//				metodos_ADCI.add(metodos_non_long.get(i));
+//		}
+//	}
 
 	public List<Metodo> getMetodos_long() {
 		return metodos_long;
@@ -303,13 +289,5 @@ public class GUI {
 	}
 	
 
-	public void is_feature_envy(){
-		for(int i=0;i<metodos.size();i++){
-			if(metodos.get(i).getAtfd()>atfd_regra_atual && metodos.get(i).getLaa()<laa_regra_atual){
-				isFeature.add(metodos.get(i));
-			}
-			noFeature.add(metodos.get(i));
-		}
-	}
 	
 }

@@ -22,6 +22,11 @@
                   <MenuItem fx:id="compararButton" mnemonicParsing="false" onAction="#abrirJanelaComparacao" text="Comparar" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Regras">
+              <items>
+                <MenuItem fx:id="editarButton" mnemonicParsing="false" onAction="#abrirRegras" text="Editar" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
