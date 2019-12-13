@@ -19,6 +19,7 @@ abrir o projeto de novo no pc de um dos contribuidores. O erro que ocorreu foi o
 
 Observações:
 
+
 Não nos foi possível utilizar o plugin Software Development Process Mining uma vez que percebemos que o mesmo nos fazia o Eclipse lento
 ao ponto de ser praticamente impossível trabalhar. Não temos completas certezas de que era essa a causa, mas assim que terminávamos o
 plugin, o Eclipse voltava ao normal.
