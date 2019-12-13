@@ -42,21 +42,24 @@ public class DetecaoErroController {
 	private int atfd_regra_atual;
 	private double laa_regra_atual;
 	
-	public void initialize() {
+	public void initialize(List<Metodo> lista, int regra_loc, int regra_cyclo) {
+		this.metodos_todos = lista;
+		this.loc_regra_atual = regra_loc;
+		this.cyclo_regra_atual = regra_cyclo;
 		for(Metodo m : metodos_todos)
 			System.out.println("nome: " +m.getName());
 		System.out.println("Regra loc: " + loc_regra_atual + " e regra cyclo: " + cyclo_regra_atual);
 		isLongMethod(loc_regra_atual, cyclo_regra_atual);
+		ObservableList<Metodo> metodosLong = FXCollections.observableArrayList(metodos_long);
+		ObservableList<Metodo> metodosEnvy = FXCollections.observableArrayList(isFeature);
+		method_id_column.setCellValueFactory(new PropertyValueFactory<>("method_id"));
+		is_long_column.setCellValueFactory(new PropertyValueFactory<>("is_long_method"));
 		is_long_column.setCellValueFactory(c ->{
 			Metodo metodo = c.getValue();
 		      CheckBox checkBox = new CheckBox();
 		      checkBox.selectedProperty().setValue(metodo.isIs_long_method());
 		      return new SimpleObjectProperty(checkBox);
 		});
-		ObservableList<Metodo> metodosLong = FXCollections.observableArrayList(metodos_long);
-		ObservableList<Metodo> metodosEnvy = FXCollections.observableArrayList(isFeature);
-		method_id_column.setCellValueFactory(new PropertyValueFactory<>("method_id"));
-		is_long_column.setCellValueFactory(new PropertyValueFactory<>("is_long_method"));
 		tabela_long.setItems(metodosLong);
 		
 	}

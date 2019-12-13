@@ -114,8 +114,7 @@ public class GUI {
 	private List<Metodo> metodos_ADCI = new ArrayList<Metodo>();
 	private List<Metodo> metodos_ADII = new ArrayList<Metodo>();
 
-	private List<Metodo>isFeature= new ArrayList<Metodo>();
-	private List<Metodo>noFeature= new ArrayList<Metodo>();
+	
 
 	
 	public void initialize() {
@@ -259,10 +258,11 @@ public class GUI {
 	public void detetarErros() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("detecaoErrosGUI.fxml"));
 		root = fxmlLoader.load();
-		DetecaoErroController controller = (DetecaoErroController)fxmlLoader.getController();// obtens o controller DetecaoErroController para poderes chamar metodos dele
-		controller.guardarListasDeMetodos(getMetodos_long());										// este controller é o que vai abrir. assim que fazes fxmlLoader.load estás a criar a instância
-		controller.setLoc_regra_atual(123);																			// e consegues obter o controller que está a ser criado
-		controller.setLaa_regra_atual(laa_regra_atual);// aqui tento dar set das regras no controller mas elas aparecem a 0. a lista dos metodos não aparece sequer porque não passa
+		DetecaoErroController controller = (DetecaoErroController)fxmlLoader.getController();
+		List<Metodo> metodos_a_enviar = getMetodos();
+		controller.initialize(metodos_a_enviar, loc_regra_atual, cyclo_regra_atual);
+		controller.setLoc_regra_atual(123);		
+		controller.setLaa_regra_atual(laa_regra_atual);
 		stage = new Stage();
 		stage.setScene(new Scene(root, 600, 400));
 		stage.initModality(Modality.APPLICATION_MODAL);

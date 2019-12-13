@@ -79,8 +79,6 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("gui.fxml"));
 			Parent root = loader.load();
-			controller = loader.getController();
-			controller.setController(controller);
 			Scene scene = new Scene(root, 1200, 500);
 			primaryStage.setScene(scene);
 			stage = primaryStage;
