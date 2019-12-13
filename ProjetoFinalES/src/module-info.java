@@ -1,10 +1,4 @@
-/**
- * 
- */
-/**
- * @author 257ma
- *
- */
+
 module projetoFinalES {
 	requires javafx.graphics;
 	requires javafx.controls;
