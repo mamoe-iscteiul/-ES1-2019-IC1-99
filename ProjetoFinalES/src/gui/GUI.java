@@ -260,9 +260,7 @@ public class GUI {
 		root = fxmlLoader.load();
 		DetecaoErroController controller = (DetecaoErroController)fxmlLoader.getController();
 		List<Metodo> metodos_a_enviar = getMetodos();
-		controller.initialize(metodos_a_enviar, loc_regra_atual, cyclo_regra_atual);
-		controller.setLoc_regra_atual(123);		
-		controller.setLaa_regra_atual(laa_regra_atual);
+		controller.initialize(metodos_a_enviar, loc_regra_atual, cyclo_regra_atual, atfd_regra_atual, laa_regra_atual);
 		stage = new Stage();
 		stage.setScene(new Scene(root, 600, 400));
 		stage.initModality(Modality.APPLICATION_MODAL);
