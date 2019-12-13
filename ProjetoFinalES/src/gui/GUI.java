@@ -13,8 +13,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import aplicacao.Metodo;
-import aplicacao.Resultado;
+import classes_auxiliares.Metodo;
+import classes_auxiliares.Resultado;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,22 +23,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class GUI {
 
 	@FXML
 	MenuItem importButton;
-
 
 	@FXML
 	TextField locTextField;
@@ -55,8 +51,6 @@ public class GUI {
 	DataFormatter df = new DataFormatter();
 	Resultado resultado;
 	GUI controller;
-
-	
 
 	@FXML
 	TableView<Metodo> table;
@@ -101,26 +95,13 @@ public class GUI {
 	private int atfd_regra_atual;
 	private double laa_regra_atual;
 
-	private List<Metodo> isFeature = new ArrayList<Metodo>();
-	private List<Metodo> noFeature = new ArrayList<Metodo>();
-	private List<Metodo> metodos_long = new ArrayList<Metodo>();
-	private List<Metodo> metodos_non_long = new ArrayList<Metodo>();
-	private List<Metodo> metodos_DCI = new ArrayList<Metodo>();
-	private List<Metodo> metodos_DII = new ArrayList<Metodo>();
-	private List<Metodo> metodos_ADCI = new ArrayList<Metodo>();
-	private List<Metodo> metodos_ADII = new ArrayList<Metodo>();
 
-	
 
-	
 	public void initialize() {
-//		desativarTextFields();
 		carregarRegrasDefault();
-//		gravarButton.setDisable(true);
+		compararButton.setDisable(true);
 
 	}
-
-	
 
 	public void ativarTextFields() {
 		locTextField.setDisable(false);
@@ -142,8 +123,10 @@ public class GUI {
 		FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("exceldoc", "*.xlsx");
 		fc.getExtensionFilters().add(extensionFilter);
 		File selectedFile = fc.showOpenDialog(stage);
-		lerFicheiroExcel(selectedFile);
-		mostrarFicheiroImportado();
+		if (selectedFile != null) {
+			lerFicheiroExcel(selectedFile);
+			mostrarFicheiroImportado();
+		}
 	}
 
 	private void mostrarFicheiroImportado() {
@@ -161,6 +144,7 @@ public class GUI {
 		pmd.setCellValueFactory(new PropertyValueFactory<>("pmd"));
 		is_feature_envy.setCellValueFactory(new PropertyValueFactory<>("is_feature_envy"));
 		table.setItems(list);
+		compararButton.setDisable(false);
 	}
 
 	private void lerFicheiroExcel(File f) throws EncryptedDocumentException, IOException {
@@ -181,10 +165,6 @@ public class GUI {
 	}
 
 	private void carregarRegrasDefault() {
-//		locTextField.setText(String.valueOf(LOC_REGRA_DEFAULT));
-//		cycloTextField.setText(String.valueOf(CYCLO_REGRA_DEFAULT));
-//		atfdTextField.setText(String.valueOf(ATFD_REGRA_DEFAULT));
-//		laaTextField.setText(String.valueOf(LAA_REGRA_DEFAULT));
 		setLoc_regra_atual(LOC_REGRA_DEFAULT);
 		setCyclo_regra_atual(CYCLO_REGRA_DEFAULT);
 		setAtfd_regra_atual(ATFD_REGRA_DEFAULT);
@@ -192,10 +172,13 @@ public class GUI {
 	}
 
 	public void abrirJanelaComparacao() throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("compararGUI.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ResultadosGUI.fxml"));
 		root = fxmlLoader.load();
+		GUIControllerResultados controller = (GUIControllerResultados) fxmlLoader.getController();
+		List<Metodo> metodos_a_enviar = getMetodos();
+		controller.initialize(metodos_a_enviar);
 		stage = new Stage();
-		stage.setScene(new Scene(root, 600, 400));
+		stage.setScene(new Scene(root, 800, 400));
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
 	}
@@ -235,13 +218,15 @@ public class GUI {
 	public List<Metodo> getMetodos() {
 		return metodos;
 	}
+
 	public void setController(GUI controller) {
 		this.controller = controller;
 	}
+
 	public void detetarErros() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("detecaoErrosGUI.fxml"));
 		root = fxmlLoader.load();
-		DetecaoErroController controller = (DetecaoErroController)fxmlLoader.getController();
+		DetecaoErroController controller = (DetecaoErroController) fxmlLoader.getController();
 		List<Metodo> metodos_a_enviar = getMetodos();
 		controller.initialize(metodos_a_enviar, loc_regra_atual, cyclo_regra_atual, atfd_regra_atual, laa_regra_atual);
 		stage = new Stage();
@@ -249,45 +234,18 @@ public class GUI {
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
 	}
-	
+
 	public void abrirRegras() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("regrasGUI.fxml"));
 		root = fxmlLoader.load();
-		RegrasGUIController controller = (RegrasGUIController)fxmlLoader.getController();
+		RegrasGUIController controller = (RegrasGUIController) fxmlLoader.getController();
 		controller.initialize(loc_regra_atual, cyclo_regra_atual, atfd_regra_atual, laa_regra_atual, this);
 		stage = new Stage();
-		stage.setScene(new Scene(root, 700,400));
+		stage.setScene(new Scene(root, 700, 400));
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.show();
 	}
 
-	
 
-	
 
-//	public void compararIplasma() {
-//		for (int i = 0; i < metodos_long.size(); i++) {
-//			if (metodos_long.get(i).isPlasma() == true) {
-//				metodos_DCI.add(metodos_long.get(i));
-//			} else
-//				metodos_ADII.add(metodos_long.get(i));
-//		}
-//		for (int i = 0; i < metodos_non_long.size(); i++) {
-//			if (metodos_non_long.get(i).isPlasma() == true) {
-//				metodos_DII.add(metodos_non_long.get(i));
-//			} else
-//				metodos_ADCI.add(metodos_non_long.get(i));
-//		}
-//	}
-
-	public List<Metodo> getMetodos_long() {
-		return metodos_long;
-	}
-
-	public void setMetodos_long(List<Metodo> metodos_long) {
-		this.metodos_long = metodos_long;
-	}
-	
-
-	
 }

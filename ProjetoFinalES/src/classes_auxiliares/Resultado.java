@@ -1,4 +1,4 @@
-package aplicacao;
+package classes_auxiliares;
 
 import java.util.ArrayList;
 import java.util.List;

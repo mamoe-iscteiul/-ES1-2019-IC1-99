@@ -1,4 +1,4 @@
-package aplicacao;
+package classes_auxiliares;
 
 public class MetodoAnalisado {
 

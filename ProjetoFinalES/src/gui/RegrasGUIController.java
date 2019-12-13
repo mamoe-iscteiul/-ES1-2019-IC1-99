@@ -14,7 +14,6 @@ public class RegrasGUIController {
 	private double laa_regra_atual;
 	private GUI controller;
 
-	private static final String IS_NUMBER_REGEX = "^[0-9]*$";
 
 	@FXML
 	TextField textfield_loc;

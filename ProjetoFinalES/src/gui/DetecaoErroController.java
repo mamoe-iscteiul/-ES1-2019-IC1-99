@@ -3,8 +3,8 @@ package gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import aplicacao.Metodo;
-import aplicacao.MetodoAnalisado;
+import classes_auxiliares.Metodo;
+import classes_auxiliares.MetodoAnalisado;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,6 +54,10 @@ public class DetecaoErroController {
 		this.atfd_regra_atual = regra_atfd;
 		this.laa_regra_atual = regra_laa;
 		analisarMetodos(metodos_todos);
+		setupDasTabelas();
+	}
+	
+	private void setupDasTabelas() {
 		ObservableList<MetodoAnalisado> metodosAnalisadosComDefeito = FXCollections.observableArrayList(metodos_analisados_com_defeito);
 		ObservableList<MetodoAnalisado> metodosAnalisadosSemDefeito = FXCollections.observableArrayList(metodos_analisados_sem_defeito);
 		method_id_column.setCellValueFactory(new PropertyValueFactory<>("method_id"));
@@ -82,7 +86,6 @@ public class DetecaoErroController {
 		column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		tabela_metodos_sem_defeito.setItems(metodosAnalisadosSemDefeito);
 		
-
 	}
 
 	private void analisarMetodos(List<Metodo> metodos) {
@@ -114,24 +117,6 @@ public class DetecaoErroController {
 	}
 
 	
-
-	
-
-//	public void compararIplasma() {
-//		for (int i = 0; i < metodos_long.size(); i++) {
-//			if (metodos_long.get(i).isPlasma() == true) {
-//				metodos_DCI.add(metodos_long.get(i));
-//			} else
-//				metodos_ADII.add(metodos_long.get(i));
-//		}
-//		for (int i = 0; i < metodos_non_long.size(); i++) {
-//			if (metodos_non_long.get(i).isPlasma() == true) {
-//				metodos_DII.add(metodos_non_long.get(i));
-//			} else
-//				metodos_ADCI.add(metodos_non_long.get(i));
-//		}
-//	}
-
 	public void guardarListasDeMetodos(List<Metodo> lista) {
 		metodos_todos = lista;
 
